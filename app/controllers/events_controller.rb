@@ -81,8 +81,8 @@ class EventsController < ApplicationController
     end
   end
 
-  # retrieve today's events
-  # awesome method by yours truly
+  # GET /show_today.xml
+  # GET /show_today will not respond with HTTP
   def show_today
     @events = Event.where(:when => Date.today)
 
