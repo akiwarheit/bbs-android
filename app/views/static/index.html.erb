@@ -29,8 +29,12 @@
 				<td><%= e.what %></td>
 				<td><%= time_ago_in_words(e.when) %> ago</td>
 				<td><%= e.where%></td>
-				<td><%= link_to 'View', {:controller => 'events',
-					:action => 'show' , :id => e.id }%></td>
+				<% if user_signed_in? %>
+					<td><%= link_to 'View', {:controller => 'events',
+						:action => 'show' , :id => e.id }%></td>
+				<% else %>	
+					<td>Sign in to view event!</td>
+				<% end %>
 			</tr>
 		<% end %>
 	</table>
