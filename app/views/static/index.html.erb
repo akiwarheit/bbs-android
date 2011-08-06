@@ -1,3 +1,6 @@
+<section id="welcome">
+	<h1>Welcome to USJ-R's Android Bulletin-Board</h1>  
+</section>
 <div id="user_nav">  
   <% if user_signed_in? %>  
     Signed in as <%= current_user.email %>. Not you?  
@@ -7,16 +10,27 @@
     <%= link_to "Sign in", new_user_session_path %>  
   <% end %>  
 </div> 
-<div>
-	<h1>Welcome to USJ-R's Android Bulletin-Board</h1>  
-</div>
-<div>
+<section id="events_counter">
 	There are
 	<%= @events.size %>
-	events!
-</div>
-<div>
-	<h2><b><font color="RED">Headlines!</font></b></h2>
-	<h3>Tito Paul's Birthday!</h3>
-	<h3><%= link_to("Happy Birthday Song!", "http://www.youtube.com/watch?v=FWbRuUE5E9M")%></h3>
-</div>
+	event(s)!
+</section>
+<section>
+	<h2>Headlines!</h2>
+	<table>
+		<tr>
+			<td>What Event?</td>
+			<td>When did it happen?</td>
+			<td>Where?</td>
+		</tr>
+		<% @highlight_events.each do |e| %>
+			<tr>
+				<td><%= e.what %></td>
+				<td><%= time_ago_in_words(e.when) %> ago</td>
+				<td><%= e.where%></td>
+				<td><%= link_to 'View', {:controller => 'events',
+					:action => 'show' , :id => e.id }%></td>
+			</tr>
+		<% end %>
+	</table>
+</section>
