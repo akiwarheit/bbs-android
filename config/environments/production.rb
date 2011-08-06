@@ -46,4 +46,7 @@ Bbs::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  #Production
+  config.action_mailer.default_url_options = { :host => 'android-bbs.heroku.com' }
 end

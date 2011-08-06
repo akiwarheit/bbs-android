@@ -87,6 +87,7 @@ class EventsController < ApplicationController
     @events = Event.where(:when => Date.today)
 
     respond_to do |format|
+      format.html { redirect_to(events_url)}
       format.xml { render :xml => @events }
     end
   end
