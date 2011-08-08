@@ -1,33 +1,37 @@
-<section id="welcome">
+<div id="welcome">
 	<h1>Welcome to USJ-R's Android Bulletin-Board Sort Of!</h1>  
 	<h2>CSS is so yesterday</h2>
-</section>
+</div>
 <div id="user_nav">  
   <% if user_signed_in? %>  
-    Signed in as <%= current_user.email %>. Not you?  
+    Signed in as <%= @user.email %>. Not you?  
     <%= link_to "Sign out", destroy_user_session_path %>  
   <% else %>  
     <%= link_to "Sign up", new_user_registration_path %> or  
     <%= link_to "Sign in", new_user_session_path %>  
   <% end %>  
 </div> 
-<section id="events_counter">
-	There are
-	<%= @events.size %>
-	event(s)!
-</section>
+<div id="events_counter">
+	There are <%= @events.size %> event(s)!
+</div>
 <section id="headlines">
 	<h2>Headlines!</h2>
 	<table>
 		<tr>
-			<td>What Event?</td>
-			<td>When did it happen?</td>
+			<td>What?</td>
+			<td>When?</td>
 			<td>Where?</td>
 		</tr>
-		<% @highlight_events.each do |e| %>
+		<% @events.each do |e| %>
 			<tr>
 				<td><%= e.what %></td>
-				<td><%= time_ago_in_words(e.when) %> ago</td>
+				<td><%= 
+					if(e.when == @today)
+						"Today"
+					else
+						(time_ago_in_words(e.when) + " ago") 
+					end
+				%></td>
 				<td><%= e.where%></td>
 				<% if user_signed_in? %>
 					<td><%= link_to 'View', {:controller => 'events',
