@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
+      format.json { render :json => @events }
     end
   end
 
@@ -93,8 +94,8 @@ class EventsController < ApplicationController
     @events = Event.where(:when => Date.today)
 
     respond_to do |format|
-      format.html { redirect_to(events_url)}
       format.xml { render :xml => @events }
+      format.json { render :json => @events }
     end
   end
 end
