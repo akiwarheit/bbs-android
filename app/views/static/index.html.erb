@@ -36,8 +36,6 @@
 				<% if user_signed_in? %>
 					<td><%= link_to 'View', {:controller => 'events',
 						:action => 'show' , :id => e.id }%></td>
-				<% else %>	
-					<td>Sign in to view event!</td>
 				<% end %>
 			</tr>
 		<% end %>
