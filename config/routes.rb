@@ -5,6 +5,7 @@ Bbs::Application.routes.draw do
 
   resources :events
   match "/events_today" => "events#show_today"
+  match "/events_by_user" => "events#show_event_by_id"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

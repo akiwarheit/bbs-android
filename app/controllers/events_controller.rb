@@ -98,4 +98,13 @@ class EventsController < ApplicationController
       format.json { render :json => @events }
     end
   end
+  
+  def show_event_by_id
+    @events = Event.where(:id => params[:id])
+    
+    respond_to do |format|
+      format.xml { render :xml => @events } 
+	    format.xml { render :json => @events } 
+    end
+  end
 end
