@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20110810134021) do
     t.string   "where"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
+    t.integer  "user_id",    :null => false
   end
 
   create_table "users", :force => true do |t|
