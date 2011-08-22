@@ -23,6 +23,11 @@
     <%= f.label :where %><br />
     <%= f.text_field :where %>
   </div>
+  <div class="field">
+  	<%= f.label :organization %>
+  	<%= select :event, :organization_id, 
+  						 @organizations.map {|o| [o.description, o.id] } %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

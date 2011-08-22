@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @organization = Organization.find(@event.organization_id);
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,17 +26,26 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
-    @event = Event.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @event }
+    if current_user.is_admin?
+      @event = Event.new
+      @organizations = current_user.organizations
+  
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @event }
+      end
+    else
+      redirect_to root_path
     end
   end
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    if current_user.is_admin?
+      @event = Event.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   # POST /events

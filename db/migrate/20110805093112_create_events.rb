@@ -1,9 +1,10 @@
 class CreateEvents < ActiveRecord::Migration
   def self.up
     create_table :events do |t|
-      t.string :what
-      t.date :when
-      t.string :where
+      t.integer :organization_id, :null => false
+      t.string :what, :null => false
+      t.date :when, :null => false
+      t.string :where, :null => false
 
       t.timestamps
     end
