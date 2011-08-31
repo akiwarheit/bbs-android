@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  
+  before_filter :authenticate_user!, :only => [:new, :create, :edit, :update]
   # GET /events
   # GET /events.xml
   def index
@@ -27,8 +29,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     if current_user.is_admin?
-      @event = Event.new
-      @organizations = current_user.organizations
+      @event = current_user.events.build
   
       respond_to do |format|
         format.html # new.html.erb
@@ -51,8 +52,9 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
-    params[:event][:user_id] = current_user.id
-    @event = Event.new(params[:event])
+    # params[:event][:user_id] = current_user.id
+    # @event = Event.new(params[:event])
+    @event = current_user.events.build(params[:event])
 
     respond_to do |format|
       if @event.save
