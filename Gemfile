@@ -10,6 +10,7 @@ gem 'omniauth'
 gem 'devise', '1.1.3'
 gem 'heroku'
 gem 'paperclip', '~> 2.3'
+gem 'rmagick'
 
 # Use unicorn as the web server
 # gem 'unicorn'
