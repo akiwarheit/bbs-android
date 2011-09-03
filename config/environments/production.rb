@@ -48,5 +48,5 @@ Bbs::Application.configure do
   config.active_support.deprecation = :notify
   
   #Production
-  config.action_mailer.default_url_options = { :host => 'localhost/' }
+  config.action_mailer.default_url_options = { :host => 'keeboi.servebeer.com' }
 end

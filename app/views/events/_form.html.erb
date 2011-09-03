@@ -27,7 +27,10 @@
   	<%= select :event, :organization_id, 
   						 Organization.all.map {|o| [o.description, o.id] } %>
   </div>
-  
+  <div class="field">
+  	<%= f.label :description %>
+  	<%= f.text_field :description %>
+  </div>
   <div class="field">
   	<%= f.label 'Avatar' %>
   	<%= f.file_field :image %>
