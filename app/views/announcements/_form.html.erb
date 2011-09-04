@@ -1,0 +1,31 @@
+<%= form_for(@announcement) do |f| %>
+  <% if @announcement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+
+      <ul>
+      <% @announcement.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+  	<%= f.label "Organization" %>
+  	<%= select :announcement, :organization_id, 
+  						 Organization.all.map {|o| [o.description, o.id] } %>
+  </div
+  ><div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

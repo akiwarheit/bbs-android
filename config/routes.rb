@@ -1,11 +1,14 @@
 Bbs::Application.routes.draw do
+  resources :announcements
+  resources :events
+  
   devise_for :users
 
   get "static/index"
 
-  resources :events
-  match "/events_today" => "events#show_today"
-  match "/events_by_user" => "events#show_event_by_id"
+  # resources :mobile
+  
+  # match "/mobile/events" => "mobile#events"
   # match "/organizations" => "organizations#index"
 
   # The priority is based upon order of creation:

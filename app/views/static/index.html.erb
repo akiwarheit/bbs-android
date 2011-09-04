@@ -1,29 +1,21 @@
 <div id="welcome">
-	<h1>Welcome to USJ-R's Android Bulletin-Board Sort Of!</h1>  
-	<h2>CSS is so yesterday</h2>
+	<h1>Welcome to USJ-R's Android Bulletin-Board</h1>  
 </div>
-<div id="user_nav">  
-  <% if user_signed_in? %>  
-    Signed in as <%= @user.email %>. Not you?  
-    <%= link_to "Sign out", destroy_user_session_path %>  
-  <% else %>  
-    <%= link_to "Sign up", new_user_registration_path %> or  
-    <%= link_to "Sign in", new_user_session_path %>  
-  <% end %>  
-</div> 
 <div id="events_counter">
-	There are <%= @events.size %> event(s)!
+	There are <%= @events.size %> event(s) and <%= @announcements.size %> announcement(s) this week!
 </div>
-<section id="headlines">
-	<h2>Headlines!</h2>
+<section id="events">
+	<h2>Events</h2>
 	<table>
 		<tr>
+			<td> </td>
 			<td>What?</td>
 			<td>When?</td>
 			<td>Where?</td>
 		</tr>
 		<% @events.each do |e| %>
 			<tr>
+				<td><%= image_tag e.image.url(:thumb) %></td>
 				<td><%= e.what %></td>
 				<td><%= 
 					if(e.when == @today)
@@ -38,6 +30,24 @@
 						:action => 'show' , :id => e.id }%></td>
 				<% end %>
 			</tr>
+		<% end %>
+	</table>
+</section>
+
+<section id="announcements">
+	<h2>Announcements</h2>
+	<table>
+		<tr>
+			<td> </td>
+		</tr>
+		<% @announcements.each do |a| %>
+		<tr>
+			<td><%= a.title %></td>	
+			<td><% if user_signed_in? %>
+			<td><%= link_to 'View', {:controller => 'announcements',
+				:action => 'show' , :id => a.id }%></td>
+					<% end %>
+		</tr>
 		<% end %>
 	</table>
 </section>
